@@ -66,11 +66,26 @@ public class NeighborhoodLibrary {
                         mouse.nextLine();
                         String checkOutName = mouse.nextLine();
 
+                        // set function here
+                        Book theBook = findBookById(checkingMeOut, books);
+                        boolean found = false;
+                        if (theBook != null) {
+                            found = true;
+                        }
+                        if (found) {
+                            System.out.println("Found 1 item");
+                            theBook.setCheckedOutTo(checkOutName);
+                            theBook.setCheckedOut(true);
+
+                        } else {
+                            System.out.println("Sorry, we don't have that book ID");
+                        }
+
+
                         System.out.println("Book ID: " + checkingMeOut +
                                 "\nChecked Out To: " + checkOutName);
                         break;
 
-                        // set function/method here
 
                     }
                     if (newSelection == 4) {
@@ -107,9 +122,19 @@ public class NeighborhoodLibrary {
 
             } else if (optionSelection == 3) {
                 break;
-        }
+            }
         }
     }
+
+    static Book findBookById(int id, Book[] books) {
+        for (Book b : books) {
+            if (id == b.getId()) {
+                return b;
+            }
+        }
+        return null;
+    }
+
 
     private static void exit() {
     }
@@ -125,17 +150,15 @@ public class NeighborhoodLibrary {
         }
     }
     static void printUnavailableBooks(Book[] books) {
-            for (Book b : books) {
-                if (b.isCheckedOut(true)) {
+        for (Book b : books) {
+            if (b.isCheckedOut(true)) {
 
-                    System.out.println(b.getId() + ":  " + b.getTitle() + ", ISBN: "
-                            + b.getIsbn() + ", Checked Out To: " + b.getCheckedOutTo());
-                }
-
+                System.out.println(b.getId() + ":  " + b.getTitle() + ", ISBN: "
+                        + b.getIsbn() + ", Checked Out To: " + b.getCheckedOutTo());
             }
 
         }
 
-        }
+    }
 
-
+}
