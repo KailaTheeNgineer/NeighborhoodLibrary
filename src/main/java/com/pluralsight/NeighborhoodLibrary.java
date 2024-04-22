@@ -3,6 +3,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class NeighborhoodLibrary {
     public static void main(String[] args) {
 
@@ -36,64 +38,82 @@ public class NeighborhoodLibrary {
                 book12, book13, book14, book15, book16, book17, book18, book19, book20
         };
 
-        Scanner mouse = new Scanner(System.in);
-        System.out.println("Welcome to The Neighborhood Library");
-        System.out.println("To begin, select an option: ");
-        System.out.println("[1] Show Available Books");
-        System.out.println("[2] Show Unavailable Books");
-        System.out.println("[3] Exit");
+        while (true) {
 
-        int optionSelection = mouse.nextInt();
+            Scanner mouse = new Scanner(System.in);
+            System.out.println("Welcome to The Neighborhood Library");
+            System.out.println("To begin, select an option: ");
+            System.out.println("[1] Show Books Ready for Check Out");
+            System.out.println("[2] Show Checked Out Books");
+            System.out.println("[3] Exit");
 
-
-        if (optionSelection == 1) {
-            System.out.println("Available for Check Out: ");
-            printAvailableBooks(books);
-            System.out.println("Select [1] to Check Out a book \n " +
-                    "Select [4] to Return home");
-            int newSelection = mouse.nextInt();
-
-            if (newSelection == 1) {
-
-                System.out.println("Enter the ID of the book you want to Check Out: ");
-
-                int checkingMeOut = mouse.nextInt();
-                System.out.println("Enter Your Full Name: ");
-                mouse.nextLine();
-                String checkOutName = mouse.nextLine();
-
-                System.out.println("Book ID: " + checkingMeOut +
-                        "\nChecked Out To: " + checkOutName);
-
-                // set values here//
-                //  books.(checkingMeOut)).setCheckedOut(true);
-                // books[checkingMeOut].setCheckedOutTo(checkOutName);
-
-                System.out.println("Press [4] to return Home");
-            }
-        } else if (optionSelection == 2) {
-            System.out.println("Checked Out Books: ");
-            printUnavailableBooks(books);
-            System.out.println("Select [1] to Check In a book \n Select [4] to return home");
-            int newSelection = mouse.nextInt();
-
-            if (newSelection == 1) {
-
-                System.out.println("Enter the ID of the book you want to Check In: ");
-
-                int checkingMeIn = mouse.nextInt();
+            int optionSelection = mouse.nextInt();
 
 
-                // Insert set functions here
-                // insert
+            if (optionSelection == 1) {
 
-                System.out.println("Book ID: " + checkingMeIn +
-                        "\nSuccessfully Checked In");
-            }
-       } else if (optionSelection == 3) {
-            return;
+                while (true) {
+                    System.out.println("Available for Check Out: ");
+                    printAvailableBooks(books);
+                    System.out.println("Select [1] to Check Out a book \n " +
+                            "Select [4] to return Home");
+                    int newSelection = mouse.nextInt();
+                    if (newSelection == 1) {
+
+                        System.out.println("Enter the ID of the book you want to Check Out: ");
+                        int checkingMeOut = mouse.nextInt();
+                        System.out.println("Enter Your Full Name: ");
+                        mouse.nextLine();
+                        String checkOutName = mouse.nextLine();
+
+                        System.out.println("Book ID: " + checkingMeOut +
+                                "\nChecked Out To: " + checkOutName);
+                        break;
+
+                        // set function/method here
+
+                    }
+                    if (newSelection == 4) {
+                        break;
+                    }
+                }
+            } else if (optionSelection == 2) {
+
+                while (true) {
+                    System.out.println("Checked Out Books: ");
+                    printUnavailableBooks(books);
+                    System.out.println("Select [1] to Check In a book \n " +
+                            "Select [4] to return Home");
+                    int newSelection = mouse.nextInt();
+
+                    if (newSelection == 1) {
+
+                        System.out.println("Enter the ID of the book you want to Check In: ");
+
+                        int checkingMeIn = mouse.nextInt();
+
+
+                        // Insert set functions here
+                        // insert
+
+                        System.out.println("Book ID: " + checkingMeIn +
+                                "\nSuccessfully Checked In");
+                        break;
+                    } else if (newSelection == 4) {
+                        break;
+                    }
+                }
+
+
+            } else if (optionSelection == 3) {
+                break;
+        }
         }
     }
+
+    private static void exit() {
+    }
+
 
     static void printAvailableBooks(Book[] books) {
         for (Book b : books) {
