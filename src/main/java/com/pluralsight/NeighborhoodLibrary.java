@@ -109,7 +109,19 @@ public class NeighborhoodLibrary {
 
 
                         // Insert set functions here
-                        // insert
+                        Book theBook = findBookById(checkingMeIn, books);
+                        boolean found = false;
+                        if (theBook != null) {
+                            found = true;
+                        }
+                        if (found) {
+                            System.out.println("Changing Check Out Status...");
+                            theBook.setCheckedOut(false);
+
+                        } else {
+                            System.out.println("Sorry, we don't have that book ID");
+                        }
+
 
                         System.out.println("Book ID: " + checkingMeIn +
                                 "\nSuccessfully Checked In");
